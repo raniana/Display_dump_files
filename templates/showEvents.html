@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show all Events</title>
+
+	<style>
+table {
+	table-layout: auto;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 80%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid black;
+
+}
+
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:hover { 
+    background-color: yellow;
+}
+</style>
+
+</head>
+<body>
+<table>
+	<h1>Tool's Events</h1>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Description</th>
+  </tr>
+	{% for e in events%}
+	 	 <tr>
+   			 <td>{{e.id}}</td>
+   			 <td>{{e.date}}</td>
+ 			 <td>{{e.time}}</td>
+  			 <td>{{e.description}}</td>
+  		</tr>
+	{%endfor%}  
+
+</table>
+
+</body>
+</html>
