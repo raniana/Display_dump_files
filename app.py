@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
+from werkzeug import secure_filename
 import data
 app = Flask(__name__)
 
@@ -10,6 +11,20 @@ events = [event1,event2]
 @app.route('/display')
 def displayDumpFile():
 	return render_template('showEvents.html',events=events)
+
+
+@app.route('/upload')
+def choose_file():
+	return render_template('loadFile.html')
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
+   else:
+           return "please choose a file"
 
 if __name__ == '__main__':
     app.debug = True
